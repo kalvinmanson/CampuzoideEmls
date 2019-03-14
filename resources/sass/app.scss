@@ -1,0 +1,19 @@
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
+a:hover { text-decoration: none; }
+h1, h2, h3, h4 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+}
+.fullHeight {
+  min-height: 100vh;
+}
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
