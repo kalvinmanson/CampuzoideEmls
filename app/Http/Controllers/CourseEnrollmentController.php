@@ -30,6 +30,9 @@ class CourseEnrollmentController extends Controller
       } elseif($course->enrollments->where('user_id', Auth::user()->id)->first()) {
         flash('Ya estas suscrito a este curso.')->warning();
         return redirect()->route('courses.show', $course->slug);
+      } elseif($course->candidates->where('user_id', Auth::user()->id)->first()) {
+        flash('Debes esperar a que un moderador o administrador apruebe tu suscripción.')->warning();
+        return redirect()->route('courses.show', $course->slug);
       } else {
         $enrollment = new Enrollment;
         $enrollment->course_id = $course->id;

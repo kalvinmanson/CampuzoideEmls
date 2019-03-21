@@ -11,11 +11,23 @@
         @endif
         <h1>{{ $section->name }}</h1>
       </div>
-      @if($section->video)
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="{{ $section->getVideoEmbedAttribute() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen></iframe>
+      <div class="d-md-flex">
+        @if($section->video)
+          <div class="flex-fill">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="{{ $section->getVideoEmbedAttribute() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen></iframe>
+            </div>
+          </div>
+        @endif
+        @if($section->activity)
+          <div class="flex-fill">
+            <div class="p-2">
+              <h4>Actividad:</h4>
+              {!! $section->activity !!}
+            </div>
+          </div>
+        @endif
       </div>
-      @endif
       <div class="card-body">
         {!! $section->content !!}
       </div>

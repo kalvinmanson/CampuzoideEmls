@@ -16,4 +16,3 @@
     @endforeach
   </ul>
 </div>
-{{ $course->questions->count() }}

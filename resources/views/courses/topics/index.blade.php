@@ -9,22 +9,7 @@
     @endif
     <ul class="list-group">
       @foreach($topics as $topic)
-      <li class="list-group-item">
-        <span class="float-right text-secondary">
-          <i class="far fa-star"></i> {{ $topic->rank }}
-          <i class="fab fa-replyd"></i> {{ $topic->replies->count() }}
-        </span>
-        <a href="{{ route('courses.topics.show', [$course->slug, $topic->slug]) }}">
-          {{ $topic->name }}
-        </a>
-        <br>
-        <small class="text-secondary">
-          {{ $topic->created_at->diffForHumans() }} Por
-          <a href="{{ route('users.show', $topic->user->username) }}">
-            {{ $topic->user->name }}
-          </a>
-        </small>
-      </li>
+        @include('courses.topics._row', ['topic' => $topic])
       @endforeach
     </ul>
   </div>

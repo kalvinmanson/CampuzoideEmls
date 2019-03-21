@@ -63,11 +63,7 @@ $(function() {
   if(typeof CKEDITOR == 'object') {
     CKEDITOR.replaceClass = 'ckeditor';
     CKEDITOR.config.allowedContent = true;
-    CKEDITOR.config.filebrowserBrowseUrl = '/drodmin/editor/kcfinder/browse.php?opener=ckeditor&type=files';
-	  CKEDITOR.config.filebrowserImageBrowseUrl = '/drodmin/editor/kcfinder/browse.php?opener=ckeditor&type=images';
-	  CKEDITOR.config.filebrowserFlashBrowseUrl = '/drodmin/editor/kcfinder/browse.php?opener=ckeditor&type=flash';
-	  CKEDITOR.config.filebrowserUploadUrl = '/drodmin/editor/kcfinder/upload.php?opener=ckeditor&type=files';
-	  CKEDITOR.config.filebrowserImageUploadUrl = '/drodmin/editor/kcfinder/upload.php?opener=ckeditor&type=images';
-	  CKEDITOR.config.filebrowserFlashUploadUrl = '/drodmin/editor/kcfinder/upload.php?opener=ckeditor&type=flash';
+    CKEDITOR.config.filebrowserBrowseUrl = '/attachments';
+    CKEDITOR.config.filebrowserUploadUrl = '/attachments';
   }
 });

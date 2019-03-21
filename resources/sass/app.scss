@@ -2,6 +2,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
 a:hover { text-decoration: none; }
+.logo {
+  width: 150px;
+}
+.logo img {
+  width: 150px;
+  position: absolute;
+  margin-top: -20px;
+}
 h1, h2, h3, h4 {
   font-family: 'Roboto Slab', serif;
   font-weight: bold;
@@ -16,4 +24,8 @@ h1, h2, h3, h4 {
   @include media-breakpoint-only(xl) {
     column-count: 5;
   }
+}
+p {
+  line-height: 1.4em;
+  color: $gray-800;
 }

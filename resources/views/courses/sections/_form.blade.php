@@ -13,12 +13,14 @@
     </div>
   </div>
 </div>
+@if($section->slug)
 <div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text">{{ route('courses.sections.index', $course->slug) }}/</span>
   </div>
   <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug') ? old('slug') : $section->slug }}">
 </div>
+@endif
 <div class="form-group">
   <label for="video" class="bmd-label-floating">Video</label>
   <input type="text" id="video" name="video" class="form-control" value="{{ old('video') ? old('video') : $section->video }}">

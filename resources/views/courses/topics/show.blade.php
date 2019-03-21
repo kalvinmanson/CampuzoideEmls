@@ -19,7 +19,7 @@
             </p>
           </div>
           <div class="col-md-3">
-            @include('partials._userPill',['user' => $topic->user])
+            @include('users._pill',['user' => $topic->user])
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
             </p>
           </div>
           <div class="col-md-3">
-            @include('partials._userPill',['user' => $reply->user])
+            @include('users._pill',['user' => $reply->user])
           </div>
         </div>
 

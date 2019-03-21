@@ -7,12 +7,7 @@
 
   <div class="card-columns">
     @foreach($users as $user)
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ $user->name }}</h5>
-        <p class="card-text">{{ $user->rank }}</p>
-      </div>
-    </div>
+      @include('users._pill',['user' => $user])
     @endforeach
   </div>
 </div>

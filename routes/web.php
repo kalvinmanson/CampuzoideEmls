@@ -15,10 +15,16 @@
 Route::get('/', 'CourseController@index')->name('home');
 Route::get('/install', 'WebController@install')->name('install');
 Auth::routes();
+Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('google');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 // Aula
 Route::resource('users', 'UserController');
 Route::resource('courses', 'CourseController');
 Route::resource('courses.sections', 'CourseSectionController');
+Route::resource('courses.questions', 'CourseQuestionController');
 Route::resource('courses.enrollments', 'CourseEnrollmentController')->except(['create', 'edit']);
 Route::resource('courses.topics', 'CourseTopicController');
+Route::middleware(['auth'])->group(function () {
+  Route::resource('attachments', 'AttachmentController');
+});

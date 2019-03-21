@@ -34,7 +34,7 @@ class CourseController extends Controller
     }
     $validatedData = $request->validate([
       'name' => 'required|max:255',
-      'slug' => 'required|alpha_num|unique:courses|max:255'
+      'slug' => 'required|unique:courses|max:255'
     ]);
     $course = new Course;
     $course->name = $request->name;
@@ -46,7 +46,7 @@ class CourseController extends Controller
     //Load picture
     if($request->hasFile('picture') && $request->file('picture')->isValid()) {
       $filename = 'courses/'.$course->slug.'-'.$course->id.'.png';
-      $img = Image::make($request->file('picture'))->fit(600, 360)->encode('png');
+      $img = Image::make($request->file('picture'))->fit(600, 300)->encode('png');
       Storage::put('public/'.$filename, $img->stream());
       $course->picture = $filename;
     }
@@ -87,7 +87,7 @@ class CourseController extends Controller
     $course = Course::where('slug', $slug)->firstOrFail();
     $validatedData = $request->validate([
       'name' => 'required|max:255',
-      'slug' => 'required|alpha_num|unique:courses,slug,'.$course->id.'|max:255',
+      'slug' => 'required|unique:courses,slug,'.$course->id.'|max:255',
       'picture' => 'image',
       'icon' => 'image'
     ]);
@@ -100,7 +100,7 @@ class CourseController extends Controller
     //Load picture
     if($request->hasFile('picture') && $request->file('picture')->isValid()) {
       $filename = 'courses/'.$course->slug.'-'.$course->id.'.png';
-      $img = Image::make($request->file('picture'))->fit(600, 360)->encode('png');
+      $img = Image::make($request->file('picture'))->fit(600, 300)->encode('png');
       Storage::put('public/'.$filename, $img->stream());
       $course->picture = $filename;
     }
