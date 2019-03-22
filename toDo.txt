@@ -1,7 +1,15 @@
 
 CRUD RESULTS
-editor wysiwyg uploads
 CRUD QUESTIONS
 RANKS vue
 USER PROFILE --
 DESING
+
+
+-mostrar no hay temas escribe uno
+-curso creatic
+  -videojuegos plataformeros
+  -animacion en blender
+-votaciones
+-favicon
+-seo
