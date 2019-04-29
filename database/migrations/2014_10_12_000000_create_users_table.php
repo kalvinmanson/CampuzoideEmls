@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
         $table->string('avatar')->nullable();
         $table->integer('points')->default(0);
         $table->float('rank')->default(0);
+        $table->string('domains')->nullable();
         $table->boolean('subscribed')->default(true);
         $table->rememberToken();
         $table->timestamps();

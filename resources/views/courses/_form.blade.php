@@ -23,7 +23,10 @@
     </div>
     <div class="form-group">
       <label for="mode" class="bmd-label-floating">Modo del curso</label>
-      <input type="text" id="mode" name="mode" class="form-control" value="{{ old('mode') ? old('mode') : $course->mode }}">
+      <select id="mode" name="mode" class="form-control">
+        <option value="Open" {{ $course->mode == "Open" ? 'selected' : '' }}>Open</option>
+        <option value="Private" {{ $course->mode == "Private" ? 'selected' : '' }}>Private</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="picture" class="bmd-label-floating">Banner promocional</label>

@@ -30,6 +30,9 @@ class CourseEnrollmentController extends Controller
       } elseif($course->enrollments->where('user_id', Auth::user()->id)->first()) {
         flash('Ya estas suscrito a este curso.')->warning();
         return redirect()->route('courses.show', $course->slug);
+      } elseif($course->mode != 'Open') {
+        flash('Este curso es privado.')->warning();
+        return redirect()->route('courses.show', $course->slug);
       } elseif($course->candidates->where('user_id', Auth::user()->id)->first()) {
         flash('Debes esperar a que un moderador o administrador apruebe tu suscripción.')->warning();
         return redirect()->route('courses.show', $course->slug);
@@ -62,8 +65,15 @@ class CourseEnrollmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($course, $id)
     {
-        //
+      $course = Course::where('slug', $course)->firstOrFail();
+      if(Gate::allows('admin-course', $course)) {
+        $enrollment = Enrollment::where('course_id', $course->id)->where('id', $id)->firstOrFail();
+        $enrollment->delete();
+        flash('Se ha eliminado la suscripción.')->error();
+      }
+      return redirect()->route('courses.enrollments.index', $course->slug);
+
     }
 }

@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Course;
+use App\Section;
+use App\Result;
+use Auth;
+use Gate;
+use Illuminate\Support\Str;
 
-class UserController extends Controller
+class CourseSectionResultController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($course, $section)
     {
-      $users = User::where('domains', 'LIKE', '%'.insite()->domain.'%')->orderBy('rank', 'desc')->paginate(30);
-      return view('users.index', compact('users'));
+      $course = Course::where('slug', $course)->firstOrFail();
+      $section = Section::where('course_id', $course->id)->where('slug', $section)->firstOrFail();
+      $results = Result::where('section_id', $section->id)->get();
+      return view('courses.sections.results.index', compact('course', 'section', 'results'));
     }
 
     /**
@@ -45,10 +52,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($username)
+    public function show($id)
     {
-      $user = User::where('username', $username)->firstOrFail();
-      return view('users.show', compact('user'));
+        //
     }
 
     /**

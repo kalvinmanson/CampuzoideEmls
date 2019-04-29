@@ -12,7 +12,7 @@ class CourseController extends Controller
 {
   public function index()
   {
-    $courses = Course::all();
+    $courses = Course::where('site_id', insite()->id)->paginate(30);
     return view('courses.index', compact('courses'));
   }
   public function create()
@@ -37,6 +37,7 @@ class CourseController extends Controller
       'slug' => 'required|unique:courses|max:255'
     ]);
     $course = new Course;
+    $course->site_id = insite()->id;
     $course->name = $request->name;
     $course->slug = $request->slug;
     $course->category = $request->category;

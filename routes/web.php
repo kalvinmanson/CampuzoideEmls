@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', 'CourseController@index')->name('home');
 Route::get('/install', 'WebController@install')->name('install');
 Auth::routes();
@@ -19,9 +18,11 @@ Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('goo
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 // Aula
+Route::resource('sites', 'SiteController')->middleware(['auth'])->only(['edit', 'update']);
 Route::resource('users', 'UserController');
 Route::resource('courses', 'CourseController');
 Route::resource('courses.sections', 'CourseSectionController');
+Route::resource('courses.sections.results', 'CourseSectionResultController');
 Route::resource('courses.questions', 'CourseQuestionController');
 Route::resource('courses.enrollments', 'CourseEnrollmentController')->except(['create', 'edit']);
 Route::resource('courses.topics', 'CourseTopicController');

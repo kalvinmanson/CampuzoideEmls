@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand logo" href="/"><img src="/img/top-logo.png" alt="{{ env('APP_NAME')}}"></a>
+  <a class="navbar-brand logo" href="/"><img src="{{ Storage::url(insite()->logo) }}" alt="{{ insite()->name }}"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navHeader" aria-controls="navHeader" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -27,6 +27,11 @@
           </li>
         @endif--}}
       @else
+        @if(Gate::allows('admin-site', insite()))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('sites.edit', insite()->id) }}"><i class="fas fa-cog"></i></a>
+          </li>
+        @endif
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }} <span class="caret"></span>
